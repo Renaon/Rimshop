@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,10 +36,10 @@ public class ProductService {
 
     public void addProduct(Product product) {
         if (productRepository.findByName(product.getTitle())==0){
-            if (productRepository.categoryByName(product.getCategory().getName()) == 0)
+            if (categoryRepository.getCategoryByName(product.getCategory().getName()) == null)
                 productRepository.save(product);
             else {
-                Long exiistLong = productRepository.categoryByName(product.getCategory().getName());
+                Long exiistLong = categoryRepository.getCategoryByName(product.getCategory().getName()).getId();
                 Category existing = categoryRepository.getReferenceById(exiistLong);
                 product.setCategory(existing);
                 productRepository.save(product);
@@ -54,7 +55,7 @@ public class ProductService {
     }
 
     public List<Product> getProductsByCategory(String categoryName){
-        return  productRepository.getProductsByCategory(categoryName);
+        return productRepository.getProductsByCategory(categoryName);
     }
 
 }

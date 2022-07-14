@@ -21,23 +21,19 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    private String name;
+    private String authority;
 
     public Role() {
     }
 
-    @Column(name = "name", unique = true)
+    @Column(name = "authority", unique = true)
     @Type(type = "org.hibernate.type.TextType")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String getAuthority() {
-        return getName();
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }

@@ -13,26 +13,13 @@ import java.util.List;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "login")
     private String login;
 
-    @ManyToMany
-    @JoinTable(name = "ShopCart",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "cart_id"))
-    List<ShopCart> shopCart;
-
-    public List<ShopCart> getShopCart() {
-        return shopCart;
-    }
-
-    public void setShopCart(List<ShopCart> shopCart) {
-        this.shopCart = shopCart;
-    }
 
     @Column(name = "password")
     private String password;
