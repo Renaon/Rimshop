@@ -1,5 +1,7 @@
 package com.example.Rimshop.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +20,24 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+    private String logo_path;
+
+    public Product() {
+    }
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private List<ShopCart> shopCarts = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name = "products_shop_carts",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "shop_carts_id"))
-    public List<ShopCart> getShopCarts() {
-        return shopCarts;
+    @Column(name = "logo_path", length = 300)
+    @Type(type = "org.hibernate.type.TextType")
+    public String getLogo_path() {
+        return logo_path;
     }
 
-    public void setShopCarts(List<ShopCart> shopCarts) {
-        this.shopCarts = shopCarts;
+    public void setLogo_path(String logo_path) {
+        this.logo_path = logo_path;
     }
-
 
     public void setCategory(Category category) {
         this.category = category;

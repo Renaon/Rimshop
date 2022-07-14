@@ -23,6 +23,9 @@ public class Role implements GrantedAuthority {
 
     private String name;
 
+    public Role() {
+    }
+
     @Column(name = "name", unique = true)
     @Type(type = "org.hibernate.type.TextType")
     public String getName() {

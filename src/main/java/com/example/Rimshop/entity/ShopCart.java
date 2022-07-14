@@ -9,6 +9,9 @@ public class ShopCart {
     private Long userId;
     private Long productId;
 
+    public ShopCart() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -38,16 +41,4 @@ public class ShopCart {
         this.productId = productId;
     }
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
