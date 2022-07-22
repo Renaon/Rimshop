@@ -5,15 +5,22 @@ import com.example.Rimshop.entity.User;
 import com.example.Rimshop.exceptions.UserExistsException;
 import com.example.Rimshop.repositories.RoleRepository;
 import com.example.Rimshop.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserSevice {
+
     @Autowired
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     public void saveUser(User user) throws UserExistsException {
         if (userRepository.loadUserByUsername(user.getUsername()) == null){
@@ -30,5 +37,9 @@ public class UserSevice {
 
     public void saveRole(Role role) {
         roleRepository.save(role);
+    }
+
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 }

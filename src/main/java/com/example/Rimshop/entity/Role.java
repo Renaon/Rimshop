@@ -27,7 +27,6 @@ public class Role implements GrantedAuthority {
     }
 
     @Column(name = "authority", unique = true)
-    @Type(type = "org.hibernate.type.TextType")
     @Override
     public String getAuthority() {
         return authority;

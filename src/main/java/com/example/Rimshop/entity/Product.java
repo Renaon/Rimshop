@@ -30,7 +30,6 @@ public class Product {
     private Category category;
 
     @Column(name = "logo_path", length = 300)
-    @Type(type = "org.hibernate.type.TextType")
     public String getLogo_path() {
         return logo_path;
     }

@@ -4,10 +4,12 @@ import com.example.Rimshop.entity.Category;
 import com.example.Rimshop.entity.Product;
 import com.example.Rimshop.repositories.CategoryRepository;
 import com.example.Rimshop.repositories.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
     CategoryRepository categoryRepository;
-
-    private Session session;
 
     @Transactional
     public List<Product> getAllProducts() {

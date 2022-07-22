@@ -3,6 +3,7 @@ package com.example.Rimshop.controller;
 import com.example.Rimshop.entity.User;
 import com.example.Rimshop.exceptions.UserExistsException;
 import com.example.Rimshop.service.UserSevice;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
     @Autowired
     UserSevice userSevice;

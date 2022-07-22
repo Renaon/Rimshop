@@ -3,17 +3,20 @@ package com.example.Rimshop.controller;
 import com.example.Rimshop.entity.Role;
 import com.example.Rimshop.entity.User;
 import com.example.Rimshop.service.UserSevice;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 public class InitialController {
-    @Autowired
     UserSevice userSevice;
 
     @GetMapping("/initial_filling")
-    public String init(){
+    public List<Role> init(){
         Role admin = new Role();
         Role user = new Role();
         user.setAuthority("user");
@@ -24,6 +27,11 @@ public class InitialController {
         User firstAdmin = new User();
         firstAdmin.setRole_id(admin);
         userSevice.saveUser(firstAdmin);
-        return "success";
+        return userSevice.getAllRoles();
+    }
+
+    @GetMapping("/get_roles")
+    public List<Role> getRoles(){
+        return userSevice.getAllRoles();
     }
 }
