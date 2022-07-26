@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 public class InitialController {
+    @Autowired
     UserSevice userSevice;
 
     @GetMapping("/initial_filling")
@@ -24,14 +24,31 @@ public class InitialController {
         userSevice.saveRole(user);
         userSevice.saveRole(admin);
 
-        User firstAdmin = new User();
-        firstAdmin.setRole_id(admin);
-        userSevice.saveUser(firstAdmin);
         return userSevice.getAllRoles();
     }
 
     @GetMapping("/get_roles")
     public List<Role> getRoles(){
         return userSevice.getAllRoles();
+    }
+
+    @GetMapping("/create_admin")
+    public List<User> createAdmin() {
+        User firstAdmin = new User();
+        firstAdmin.setPassword("admin");
+        firstAdmin.setLogin("admin");
+        firstAdmin.setRole(userSevice.getRoleById(2L));
+        userSevice.saveUser(firstAdmin);
+        return userSevice.getAllUsers();
+    }
+
+    @GetMapping("/get_users")
+    public List<User> getAllUsers() {
+        return userSevice.getAllUsers();
+    }
+
+    @GetMapping("/get_role")
+    public Role getRole(){
+        return userSevice.getRoleById(2L);
     }
 }

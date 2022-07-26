@@ -1,6 +1,7 @@
 package com.example.Rimshop.entity;
 
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,6 +25,19 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    private Role role;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "role_id")
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -36,35 +50,11 @@ public class User implements UserDetails {
         this.login = login;
     }
 
-    private Role role_id;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    public Role getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(Role role_id) {
-        this.role_id = role_id;
-    }
-
     public User(String login) {
         this.login = login;
     }
 
     public User(){}
-
-//    public Users(String login, String role, String password) {
-//        this.login = login;
-//        this.role_id = new UserService().getRole(role);
-//        this.password = password;
-//    }
-
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-        this.role_id.setId(0L);
-    }
 
     public String getLogin() {
         return login;

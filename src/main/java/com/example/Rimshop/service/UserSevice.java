@@ -5,10 +5,9 @@ import com.example.Rimshop.entity.User;
 import com.example.Rimshop.exceptions.UserExistsException;
 import com.example.Rimshop.repositories.RoleRepository;
 import com.example.Rimshop.repositories.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -18,13 +17,13 @@ public class UserSevice {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
-
-    @PersistenceContext
-    EntityManager entityManager;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void saveUser(User user) throws UserExistsException {
         if (userRepository.loadUserByUsername(user.getUsername()) == null){
-            user.setRole_id(roleRepository.getReferenceById(2L));
+//            user.setRole_id(roleRepository.getReferenceById(2L));
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));;
             userRepository.save(user);
         }else {
             throw new UserExistsException("User exist. Try to change your login");
@@ -41,5 +40,9 @@ public class UserSevice {
 
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

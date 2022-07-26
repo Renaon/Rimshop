@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/adminReg")
     public String adminRegister(Model model){
         User userForm = new User();
-        userForm.setRole_id(userSevice.getRoleById(2L));
+        userForm.setRole(userSevice.getRoleById(2L));
         model.addAttribute("user", userForm);
         return "register";
     }
@@ -37,6 +37,7 @@ public class UserController {
     @RequestMapping("/register_success")
     public String register(@ModelAttribute("user") User userForm){
         try {
+            userForm.setRole(userSevice.getRoleById(1L));
             userSevice.saveUser(userForm);
         }catch (UserExistsException e){
             return "regErr";
