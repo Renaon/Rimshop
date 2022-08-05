@@ -9,6 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -18,8 +20,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @Modifying
     @Query("update User u set u.role = ?1 where u.id = ?2")
-    void updateRoleById(Long role, Integer id);
+    void updateRoleById(Role role_id, Long id);
 
-
-
+    @Query("select u from User u where u.login like ?1")
+    Optional<User> findByUsername(String username);
 }

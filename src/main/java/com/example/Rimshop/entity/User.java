@@ -25,17 +25,17 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "role_id")
+
     public Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRole(Role role_id) {
+        this.role = role_id;
     }
 
     public Integer getId() {

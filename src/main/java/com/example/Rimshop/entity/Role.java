@@ -17,9 +17,6 @@ public class Role implements GrantedAuthority {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Transient
-    private List<User> users = new ArrayList<>();
-
     public Long getId() {
         return id;
     }
@@ -29,15 +26,6 @@ public class Role implements GrantedAuthority {
     }
 
     private String authority;
-
-    @OneToMany(mappedBy = "role")
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     public Role() {
     }
