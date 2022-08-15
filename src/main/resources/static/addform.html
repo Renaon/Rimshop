@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="style/addform.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/addProduct.js"></script>
+
+<html ng-app="addform">
+ <div class="container">
+  <div class="row">
+  <div class="col-md-offset-3 col-md-6">
+  <div class="tab" role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Добавить товар</a></li>
+  </ul>
+   <br>
+  <form class="form-horizontal" ng-controller="addProduct" [formGroup] = "form">
+    <div class="form-group">
+    <label for="title">Название</label>
+    <input type="text" class="form-control" id="title">
+    </div>
+    <div class="form-group">
+    <label for="price">Стоимость</label>
+    <input type="text" class="form-control" id="price">
+    </div>
+    <div class="form-group">
+    <label for="category">Категория</label>
+    <input type="text" class="form-control" id="category">
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn btn-default">Sign up</button>
+    </div>
+  </form>
+  </div>
+  </div>
+  </div>
+
+ </div><!-- /.col-md-offset-3 col-md-6 -->
+
+</html>

@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequiredArgsConstructor
+import java.util.List;
+
+@RestController
 public class ProductController {
     private Product product;
 
@@ -21,18 +24,14 @@ public class ProductController {
     CategoryService categoryService;
 
     @GetMapping("/add")
-    public String add(Model model) {
-        this.product = new Product();
-        model.addAttribute("product", product);
-        return "add";
-
+    public String add(@RequestBody Product product) {
+        productService.addProduct(product);
+        return "success";
     }
 
     @GetMapping("/catalog")
-    public String catalog(Model model){
-        model.addAttribute("title", "Каталог");
-        model.addAttribute("categories", categoryService.findAll());
-        return "Каталог.html";
+    public List<Product> catalog(){
+        return productService.getAllProducts() ;
     }
 
 }

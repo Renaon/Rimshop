@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="catalogue">
+
+<meta charset="UTF-8">
+<script src="js/header.js"></script>
+
+    <section class="u-clearfix u-section-1" id="sec-cc40">
+      <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController">
+            <h1>Каталог</h1>
+          <button class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
+                  ng-click="init()">Refresh</button>
+          <tr ng-repeat="p in categories">
+              <a href="https://nicepage.me"
+                 class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
+                 text={p.name}>
+              </a>
+          </tr>
+
+      </div>
+    </section>
+
+<script src="js/footer.js"></script>
+
+</html>
