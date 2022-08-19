@@ -11,4 +11,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long>, JpaSp
 
     @Query("FROM category WHERE name=:name")
     Category getCategoryByName(String name);
+
+    @Query("select id from category where name=:name")
+    Long getCategoryIDByName(String name);
 }

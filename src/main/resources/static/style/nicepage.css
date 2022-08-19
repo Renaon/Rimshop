@@ -2088,7 +2088,7 @@ a:focus {
   outline-offset: -2px;
 }
 .u-clearfix:after,
-.u-clearfix:before {
+.u-sheet-1:before {
   content: '';
   display: table;
 }

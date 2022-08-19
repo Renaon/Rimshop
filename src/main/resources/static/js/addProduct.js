@@ -1,37 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { AppComponent } from './app.component';
+form = document.getElementById('addProduct');
+url = 'http://localhost:8189/add';
 
-const contextPath = 'http:://localhost:8189/';
+async function retriveFormValue(event) {
+    event.preventDefault();
 
-@NgModule({
-    imports:      [ BrowserModule, ReactiveFormsModule ],
-    declarations: [ AppComponent ],
-    bootstrap:    [ AppComponent ]
-})
-@Component({
-    selector : 'addform ',
-    templateUrl: contextPath + '/addform.html',
-    styleUrls: ['style/addform.css']
-})
-export class AppModule { }
+    const title = form.querySelector(' [name="title"] ').value,
+        price = form.querySelector(' [name="price"] ').value,
+        category = form.querySelector(' [name="category"] ').value;
 
-export class AppComponent {
-    form: FormGroup;
-    constructor(fb: FormBuilder) {}
-
-    ngOnInit(){
-        this.initForm();
+    const product = {
+        title: title,
+        price: price,
+        category: category
+    };
+    console.log('product', product);
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(product),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const json = await response.json();
+        console.log('Успех:', JSON.stringify(json));
+    }catch (error) {
+        console.error('Ошибка:', error);
     }
 
-    initForm() {
-        this.form = this.fb.group({
-            title : [null],
-            price : [null],
-            category: [null]
-            });
-    }
 }
+
+form.addEventListener('submit', retriveFormValue);

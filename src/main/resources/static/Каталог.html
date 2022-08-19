@@ -3,19 +3,19 @@
 
 <meta charset="UTF-8">
 <script src="js/header.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 
     <section class="u-clearfix u-section-1" id="sec-cc40">
-      <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController">
-            <h1>Каталог</h1>
-          <button class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
-                  ng-click="init()">Refresh</button>
+      <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController" ng-model="categories"><font color="white">
+            <h1 class="u-text u-text-default u-title u-text-1">Каталог</h1>
+
           <tr ng-repeat="p in categories">
-              <a href="https://nicepage.me"
+              <a href=""
                  class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
-                 text={p.name}>
+                 text="">
               </a>
           </tr>
-
+      </font> 
       </div>
     </section>
 

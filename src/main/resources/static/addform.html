@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="style/addform.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 <script src="js/addProduct.js"></script>
 
 <html ng-app="addform">
@@ -15,23 +16,24 @@
   <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Добавить товар</a></li>
   </ul>
    <br>
-  <form class="form-horizontal" ng-controller="addProduct" [formGroup] = "form">
-    <div class="form-group">
-    <label for="title">Название</label>
-    <input type="text" class="form-control" id="title">
-    </div>
-    <div class="form-group">
-    <label for="price">Стоимость</label>
-    <input type="text" class="form-control" id="price">
-    </div>
-    <div class="form-group">
-    <label for="category">Категория</label>
-    <input type="text" class="form-control" id="category">
-    </div>
-    <div class="form-group">
-    <button type="submit" class="btn btn-default">Sign up</button>
-    </div>
+  <form class="form-horizontal" ng-controller="addProduct" method="POST" id="addProduct">
+        <div class="form-group">
+            <label for="title">Название</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="price">Стоимость</label>
+            <input type="number" class="form-control" id="price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="category">Категория</label>
+            <input type="text" class="form-control" id="category" name="category">
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn btn-default">Отправить</button>
+        </div>
   </form>
+      <script src="js/addProduct.js"></script>
   </div>
   </div>
   </div>

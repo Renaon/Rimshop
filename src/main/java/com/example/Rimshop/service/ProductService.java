@@ -1,5 +1,6 @@
 package com.example.Rimshop.service;
 
+import com.example.Rimshop.DTO.ProductDto;
 import com.example.Rimshop.entity.Category;
 import com.example.Rimshop.entity.Product;
 import com.example.Rimshop.repositories.CategoryRepository;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.TypedQuery;
@@ -33,17 +36,19 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addProduct(Product product) {
-        if (productRepository.findByName(product.getTitle())==0){
-            if (categoryRepository.getCategoryByName(product.getCategory().getName()) == null)
-                productRepository.save(product);
-            else {
-                Long exiistLong = categoryRepository.getCategoryByName(product.getCategory().getName()).getId();
-                Category existing = categoryRepository.getReferenceById(exiistLong);
-                product.setCategory(existing);
-                productRepository.save(product);
-            }
+    @Transactional
+    public ProductDto addProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setPrice(productDto.getPrice());
+        product.setTitle(productDto.getTitle());
+        try {
+            Long categoryId = categoryRepository.getCategoryIDByName(productDto.getCategoryTitle());
+            product.setCategory(categoryRepository.getReferenceById(categoryId));
+        } catch (NullPointerException e) {
+            product.setCategory(new Category(productDto.getCategoryTitle()));
         }
+        productRepository.save(product);
+        return new ProductDto(product);
     }
 
     public void dropProduct(Long id){
@@ -57,4 +62,7 @@ public class ProductService {
         return productRepository.getProductsByCategory(categoryName);
     }
 
+    public Page<Product> findPage(int page, int pageSize) {
+        return productRepository.findAllBy(PageRequest.of(page, pageSize));
+    }
 }
