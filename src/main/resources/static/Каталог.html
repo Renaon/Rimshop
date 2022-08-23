@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="catalogue">
+<html ng-app="Rimshop">
 
 <meta charset="UTF-8">
 <script src="js/header.js"></script>
@@ -8,14 +8,14 @@
     <section class="u-clearfix u-section-1" id="sec-cc40">
       <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController" ng-model="categories"><font color="white">
             <h1 class="u-text u-text-default u-title u-text-1">Каталог</h1>
-
-          <tr ng-repeat="p in categories">
+            <script src="js/categories.js"></script>
+          <div ng-repeat="p in categories">
               <a href=""
                  class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
-                 text="">
+                 text={{p.name}}>
               </a>
-          </tr>
-      </font> 
+          </div>
+      </font>
       </div>
     </section>
 

@@ -40,10 +40,11 @@ document.write('' +
     '            </a>\n' +
     '        </div>\n' +
     '        <div class="u-custom-menu u-nav-container">\n' +
-    '            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../../templates/Главная.html" style="padding: 10px 20px;">Главная</a>\n' +
-    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../../templates/О-нас.html" style="padding: 10px 20px;">О нас</a>\n' +
-    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../../templates/Контакты.html" style="padding: 10px 20px;">Контакты</a>\n' +
+    '            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.html" style="padding: 10px 20px;">Главная</a>\n' +
+    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../О-нас.html" style="padding: 10px 20px;">О нас</a>\n' +
+    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../Контакты.html" style="padding: 10px 20px;">Контакты</a>\n' +
     '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Каталог.html" style="padding: 10px 20px;">Каталог</a>\n' +
+    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="addform.html">Добавить товар</a>\n' +
     '            </li></ul>\n' +
     '        </div>\n' +
     '        <div class="u-custom-menu u-nav-container-collapse">\n' +
@@ -51,9 +52,10 @@ document.write('' +
     '                <div class="u-inner-container-layout u-sidenav-overflow">\n' +
     '                    <div class="u-menu-close"></div>\n' +
     '                    <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.html">Главная</a>\n' +
-    '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../templates/О-нас.html">О нас</a>\n' +
-    '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../../templates/Контакты.html">Контакты</a>\n' +
+    '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../О-нас.html">О нас</a>\n' +
+    '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="../Контакты.html">Контакты</a>\n' +
     '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Каталог.html">Каталог</a>\n' +
+    '                    </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="addform.html">Добавить товар</a>\n' +
     '                    </li></ul>\n' +
     '                </div>\n' +
     '            </div>\n' +

@@ -24,11 +24,14 @@ import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     CategoryRepository categoryRepository;
 
     @Transactional
@@ -41,12 +44,8 @@ public class ProductService {
         Product product = new Product();
         product.setPrice(productDto.getPrice());
         product.setTitle(productDto.getTitle());
-        try {
-            Long categoryId = categoryRepository.getCategoryIDByName(productDto.getCategoryTitle());
-            product.setCategory(categoryRepository.getReferenceById(categoryId));
-        } catch (NullPointerException e) {
-            product.setCategory(new Category(productDto.getCategoryTitle()));
-        }
+        Category category = categoryRepository.getCategoryByName(productDto.getCategoryTitle());
+        product.setCategory(Objects.requireNonNullElseGet(category, () -> new Category(productDto.getCategoryTitle())));
         productRepository.save(product);
         return new ProductDto(product);
     }

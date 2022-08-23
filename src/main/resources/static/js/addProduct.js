@@ -1,5 +1,5 @@
 form = document.getElementById('addProduct');
-url = 'http://localhost:8189/add';
+let url = 'http://localhost:8189/add';
 
 async function retriveFormValue(event) {
     event.preventDefault();

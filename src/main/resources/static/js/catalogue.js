@@ -1,5 +1,5 @@
 angular.module("catalogue", []).controller("catalogueController", function($scope, $http){
-   const contextPath = 'http:://localhost:8189/catalog';
+   const contextPath = 'http:://localhost:8189/';
 
    $scope.init = function() {
       $http.get(contextPath).then(function(response){
@@ -34,16 +34,5 @@ angular.module("catalogue", []).controller("catalogueController", function($scop
          console.log("PAGE FROM BACKEND")
          console.log($scope.productsPage);
       });
-   };
-
-   $scope.createNewProduct = function () {
-      $http.post(contextPath + '/add', $scope.newProduct)
-          .then(function successCallback(response) {
-             $scope.loadPage(1);
-             $scope.newProduct = null;
-          }, function errorCallback(response) {
-             console.log(response.data);
-             alert('Error: ' + response.data.messages);
-          });
    };
 });
