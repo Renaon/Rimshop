@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html ng-app="catalogue">
+<html ng-app="Rimshop">
 
 <meta charset="UTF-8">
 <script src="js/header.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="js/products.js"></script>
 
 <section class="u-clearfix u-section-1" id="sec-cc40">
-    <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController" ng-model="categories"><font color="white">
+    <div class="u-clearfix u-sheet u-sheet-1" ng-controller="productController" ng-model="products"><font color="white">
         <h1 class="u-text u-text-default u-title u-text-1">Каталог</h1>
-        <tr ng-repeat="p in productsPage.content">
-            <td>{{p.id}}</td>
-            <td>{{p.title}}</td>
-            <td>{{p.categoryTitle}}</td>
-            <td>{{p.price}}</td>
-            <td>
-                <button class="btn btn-outline-primary" ng-click="addToCart(p.id)">Add to Cart</button>
-            </td>
-        </tr>
+        <table class="table">
+            <tr>
+                <td>Наименование</td>
+                <td>Категория</td>
+                <td>Стоимость</td>
+                <td></td>
+            </tr>
+            <br>
+            <tr ng-repeat="p in productsPage.content">
+                <td>{{p.title}}</td>
+                <td>{{p.categoryTitle}}</td>
+                <td>{{p.price}}</td>
+                <td>
+                    <button class="btn btn-outline-primary" ng-click="addToCart(p.id)">Add to Cart</button>
+                </td>
+            </tr>
+        </table>
     </font>
     </div>
 </section>

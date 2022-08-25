@@ -61,6 +61,10 @@ public class ProductService {
         return productRepository.getProductsByCategory(categoryName);
     }
 
+    public Page<Product>getPageByCategory(String categoryName, int page, int pageSize){
+        return productRepository.getProductsByCategory(categoryName, PageRequest.of(page, pageSize));
+    }
+
     public Page<Product> findPage(int page, int pageSize) {
         return productRepository.findAllBy(PageRequest.of(page, pageSize));
     }

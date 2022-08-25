@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <script src="js/header.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="js/categories.js"></script>
 
     <section class="u-clearfix u-section-1" id="sec-cc40">
-      <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController" ng-model="categories"><font color="white">
-            <h1 class="u-text u-text-default u-title u-text-1">Каталог</h1>
-            <script src="js/categories.js"></script>
-          <div ng-repeat="p in categories">
-              <a href=""
-                 class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
-                 text={{p.name}}>
+      <div class="u-clearfix u-sheet u-sheet-1" ng-controller="catalogueController" id="categories"><font color="white">
+          <h1 class="u-text u-text-default u-title u-text-1">Каталог</h1>
+          <div ng-init="getCategories()"></div>
+          <p ng-repeat="p in categories">
+              <a ng-click="byCategory(p)"
+                 class="u-border-2 u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1">
+                  {{p}}
               </a>
-          </div>
-      </font>
-      </div>
+          </p>
+
+      </font></div>
     </section>
 
 <script src="js/footer.js"></script>

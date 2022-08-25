@@ -13,15 +13,19 @@ public class ProductDto implements Serializable {
     private Long id;
     private String title;
     private int price;
-    private Category category;
+    private String category;
     public ProductDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
         this.price = product.getPrice();
-        this.category = product.getCategory();
+        this.category = product.getCategory().getName();
     }
 
     public String getCategoryTitle() {
-        return category.getName();
+        return category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }

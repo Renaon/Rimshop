@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,5 +40,16 @@ public class ProductController {
         return dtoPage;
     }
 
+    @GetMapping("/category")
+    @ResponseBody
+    public List<ProductDto> getProductsByCategory(@RequestParam(name = "name") String name){
+        System.out.println("Пидор тут");
+        List<Product> productsPage = productService.getProductsByCategory(name);
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (Product product : productsPage) {
+            productDtos.add(new ProductDto(product));
+        }
+        return productDtos;
+    }
 
 }
