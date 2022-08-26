@@ -43,7 +43,6 @@ public class ProductController {
     @GetMapping("/category")
     @ResponseBody
     public List<ProductDto> getProductsByCategory(@RequestParam(name = "name") String name){
-        System.out.println("Пидор тут");
         List<Product> productsPage = productService.getProductsByCategory(name);
         List<ProductDto> productDtos = new ArrayList<>();
         for (Product product : productsPage) {
