@@ -24,12 +24,12 @@ angular.module('Rimshop', []).controller('catalogueController', function($scope,
         }).then(function(response) {
            $scope.products = response.data;
             for (i in $scope.products) {
-                var tmp = $scope.products[i].id;
+                tmp = $scope.products[i].id;
                 productsPrint += '<td>' + $scope.products[i].title + '</td>' +
                     '<td>' + $scope.products[i].categoryTitle + '</td>' +
                     '<td>' + $scope.products[i].price + '</td>' +
                     '<td><button class="btn btn-outline-primary" id="addToCart" ' +
-                    '           onclick="addToCart()">Add to Cart</button></td>';
+                    '           onclick="addToCart(tmp)">Add to Cart</button></td>';
             }
             element0.innerHTML ='<font color="white"> ' +
                 '<table class="table">\n' +
@@ -49,8 +49,8 @@ angular.module('Rimshop', []).controller('catalogueController', function($scope,
     }
 });
 
-async function addToCart(){
-    console.log("test");
+async function addToCart(tmp){
+    console.log("test " + tmp);
 }
 
 

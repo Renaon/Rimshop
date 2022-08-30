@@ -1,22 +1,35 @@
 package com.example.Rimshop.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "shop_cart")
+@Data
+@NoArgsConstructor
 public class ShopCart {
     private Long id;
     private Long userId;
-    private Long productId;
-
-    public ShopCart() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
+    }
+
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public void setId(Long id) {
@@ -28,17 +41,9 @@ public class ShopCart {
         return userId;
     }
 
-    @Column(name = "product_id")
-    public Long getProductId() {
-        return productId;
-    }
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
 }
