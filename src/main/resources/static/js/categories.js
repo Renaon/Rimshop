@@ -50,7 +50,14 @@ angular.module('Rimshop', []).controller('catalogueController', function($scope,
 });
 
 async function addToCart(tmp){
-    console.log("test " + tmp);
+    let url = "http://localhost:8189/cart/add" +  "?productID=" + tmp;
+
+    try {
+        const response = await fetch(url);
+        const json = await response;
+    }catch (error) {
+        console.error('Ошибка:', error);
+    }
 }
 
 
