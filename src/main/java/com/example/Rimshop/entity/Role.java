@@ -39,4 +39,10 @@ public class Role implements GrantedAuthority {
     public void setAuthority(String authority) {
         this.authority = authority;
     }
+
+    /*TODO
+    Заменить роли на autority.
+    Пересмотреть таблицу в соответствии с уроком
+    То же сделать с пользователями
+     TODO*/
 }
