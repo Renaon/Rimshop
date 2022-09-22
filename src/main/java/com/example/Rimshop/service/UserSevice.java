@@ -56,14 +56,14 @@ public class UserSevice implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findByUsername(String username) {
+    public Optional<User> loadOptionalUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
+        User user = loadOptionalUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", username)));
         Collection<Role> role = new ArrayList<>();
         role.add(user.getRole());
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(role));
