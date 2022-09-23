@@ -1,17 +1,25 @@
 package com.example.Rimshop.conf.security;
 
+import com.example.Rimshop.service.UserSevice;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+
+import javax.sql.DataSource;
 
 @Configuration
-@Order(1)
-@EnableWebSecurity
+@EnableConfigurationProperties
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    UserSevice userSevice;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,9 +33,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
     }
 
+    @Override
+    public void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.userDetailsService(userSevice);
+    }
+
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder;
+    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public JdbcUserDetailsManager userDetailsManager(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 }

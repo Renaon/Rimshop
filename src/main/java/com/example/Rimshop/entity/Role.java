@@ -1,6 +1,7 @@
 package com.example.Rimshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -10,33 +11,19 @@ import java.util.List;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
-@Table(name = "role")
+@Table(name = "authorities")
+@Data
 public class Role implements GrantedAuthority {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @Column(name = "authority")
     private String authority;
 
-    public Role() {
-    }
-
-    @Column(name = "authority", unique = true)
     @Override
     public String getAuthority() {
         return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
     }
 }

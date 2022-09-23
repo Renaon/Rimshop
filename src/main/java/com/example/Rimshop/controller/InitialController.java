@@ -3,11 +3,11 @@ package com.example.Rimshop.controller;
 import com.example.Rimshop.entity.Role;
 import com.example.Rimshop.entity.User;
 import com.example.Rimshop.service.UserSevice;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,7 +37,9 @@ public class InitialController {
         User firstAdmin = new User();
         firstAdmin.setPassword("admin");
         firstAdmin.setLogin("admin");
-        firstAdmin.setRole(userSevice.getRoleById(2L));
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(userSevice.getRoleById(0L));
+        firstAdmin.setRoles(roles);
         userSevice.saveUser(firstAdmin);
         return userSevice.getAllUsers();
     }

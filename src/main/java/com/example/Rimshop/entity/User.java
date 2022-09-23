@@ -2,6 +2,7 @@ package com.example.Rimshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Data
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,48 +27,24 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role_id) {
-        this.role = role_id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public User(String login) {
         this.login = login;
     }
 
-    public User(){}
+    public User() {
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
