@@ -14,9 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableConfigurationProperties
@@ -35,18 +32,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasAuthority("admin")
+                .antMatchers("/add/**").hasAuthority("admin")
                 .antMatchers("/user/**").hasAnyAuthority("client", "admin")
-                .antMatchers("**/addform.html").hasAuthority("admin")
                 .antMatchers("/cart/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .anyRequest().permitAll()
                 .and().httpBasic()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .headers().frameOptions().disable()
                 .and().formLogin()
-                .defaultSuccessUrl("/admin");
+                .defaultSuccessUrl("http://localhost:63342/Rimshop/demo/static/index.html");
     }
 
     @Override

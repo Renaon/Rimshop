@@ -2,7 +2,6 @@ let url = 'http://localhost:8189/categories';
 // let element0 = document.getElementById("categories");
 
 angular.module('Rimshop', []).controller('catalogueController', function($scope, $http) {
-    $scope.test = "Test"
     $scope.getCategories = function(page) {
         $http({
             url : url,

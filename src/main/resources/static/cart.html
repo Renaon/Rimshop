@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="Rimshop">
+
+<meta charset="UTF-8">
+<script src="js/header.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="js/cart.js"></script>
+<section class="u-align-center u-clearfix u-image u-shading u-section-1" src="images/a9f1l0v7ore41.png"
+         data-image-width="1920" data-image-height="1080" id="sec-25cf">
+    <div class="u-clearfix u-sheet u-sheet-1" ng-controller="cartController" id="cartDto">
+        <div ng-init="getCart()"></div>
+        <h1 class="u-text u-text-default u-title u-text-1">Ваша корзина</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="oi in cartDto.items">
+                <td>{{oi.productTitle}}</td>
+                <td>
+                    {{oi.quantity}}
+                </td>
+                <td>{{oi.pricePerProduct + ' x ' + oi.quantity + ' = ' + oi.price}}</td>
+            </tr>
+            <tr style="font-weight: bold">
+                <td>Итого</td>
+                <td></td>
+                <td>{{cartDto.sum + ' руб.'}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</section>
+<script src="js/footer.js"></script>
+
+</html>

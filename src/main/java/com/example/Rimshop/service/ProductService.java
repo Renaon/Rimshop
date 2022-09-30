@@ -6,25 +6,15 @@ import com.example.Rimshop.entity.Product;
 import com.example.Rimshop.repositories.CategoryRepository;
 import com.example.Rimshop.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -67,5 +57,9 @@ public class ProductService {
 
     public Page<Product> findPage(int page, int pageSize) {
         return productRepository.findAllBy(PageRequest.of(page, pageSize));
+    }
+
+    public Optional<Product> getProductById(Long id){
+        return productRepository.findById(id);
     }
 }

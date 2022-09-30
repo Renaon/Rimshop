@@ -44,7 +44,9 @@ document.write('' +
     '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../О-нас.html" style="padding: 10px 20px;">О нас</a>\n' +
     '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="../Контакты.html" style="padding: 10px 20px;">Контакты</a>\n' +
     '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Каталог.html" style="padding: 10px 20px;">Каталог</a>\n' +
+    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="cart.html">Корзина</a>\n' +
     '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="addform.html">Добавить товар</a>\n' +
+    '            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="http://localhost:8189/login">Войти</a>\n' +
     '            </li></ul>\n' +
     '        </div>\n' +
     '        <div class="u-custom-menu u-nav-container-collapse">\n' +

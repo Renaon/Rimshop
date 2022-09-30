@@ -1,6 +1,8 @@
 package com.example.Rimshop.utils;
 
 import com.example.Rimshop.entity.CartItem;
+import com.example.Rimshop.entity.Product;
+import com.example.Rimshop.exceptions.ResourceNotFoundException;
 import com.example.Rimshop.service.ProductService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +30,13 @@ public class Cart {
         for (CartItem cart : items) {
             if (cart.getProduct().getId().equals(id)){
                 cart.incrementQuantity();
-
+                recalculateCart();
+                return;
             }
         }
+        Product product = productService.getProductById(id).orElseThrow(() -> new ResourceNotFoundException("Product doesn't exists id: " + id + " (add to cart)"));
+        items.add(new CartItem(product));
+        recalculateCart();
     }
 
     public void recalculateCart(){
