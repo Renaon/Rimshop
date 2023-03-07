@@ -1,5 +1,5 @@
 form = document.getElementById('addProduct');
-let url = 'http://localhost:8189/add';
+ url = 'http://localhost:8189/add';
 
 async function retriveFormValue(event) {
     event.preventDefault();
@@ -19,7 +19,7 @@ async function retriveFormValue(event) {
             method: 'POST',
             body: JSON.stringify(product),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             }
         });
         const json = await response.json();

@@ -27,7 +27,12 @@ public class ProductController {
     @Autowired
     CategoryService categoryService;
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
+    @RequestMapping(
+            value = "/add",
+            produces = "application/json",
+            method = {RequestMethod.POST, RequestMethod.PUT}
+    )
     public String add(@RequestBody ProductDto product) {
         productService.addProduct(product);
         return "success";

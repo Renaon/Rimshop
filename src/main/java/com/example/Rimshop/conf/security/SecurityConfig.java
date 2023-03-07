@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .headers().frameOptions().disable()
                 .and().formLogin()
-                .defaultSuccessUrl("http://localhost:63342/Rimshop/demo/static/index.html");
+                .defaultSuccessUrl("http://localhost:8189");
     }
 
     @Override
