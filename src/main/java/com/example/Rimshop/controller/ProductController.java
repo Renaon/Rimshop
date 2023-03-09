@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +36,12 @@ public class ProductController {
     )
     public String add(@RequestBody ProductDto product) {
         productService.addProduct(product);
+        return "success";
+    }
+
+    @GetMapping("/drop")
+    public String dropProduct(@RequestParam String id){
+        productService.dropProduct(Long.valueOf(id));
         return "success";
     }
 

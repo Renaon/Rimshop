@@ -6,6 +6,8 @@ import com.example.Rimshop.entity.Product;
 import com.example.Rimshop.repositories.CategoryRepository;
 import com.example.Rimshop.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ public class ProductService {
     @Autowired
     CategoryRepository categoryRepository;
 
+    Logger logger = LoggerFactory.getLogger(ProductService.class);
+
     @Transactional
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -32,6 +36,14 @@ public class ProductService {
     @Transactional
     public ProductDto addProduct(ProductDto productDto) {
         Product product = new Product();
+        if(productDto.getTitle()
+                .equals(
+                    productRepository.loadReferenceByTitle(productDto.getTitle())
+                        .getTitle())
+        ){
+            logger.info("Найден дубль");
+            return null;
+        }
         product.setPrice(productDto.getPrice());
         product.setTitle(productDto.getTitle());
         Category category = categoryRepository.getCategoryByName(productDto.getCategoryTitle());

@@ -10,4 +10,12 @@ angular.module("Rimshop", []).controller("cartController", function($scope, $htt
             $scope.cartDto = response.data;
         })
     }
+
+    $scope.clear = function() {
+        console.log("Чистим корзину")
+        $http({
+            url : url + "/clear",
+            method : "GET",
+        })
+    }
 });
