@@ -36,13 +36,17 @@ public class ProductService {
     @Transactional
     public ProductDto addProduct(ProductDto productDto) {
         Product product = new Product();
-        if(productDto.getTitle()
-                .equals(
-                    productRepository.loadReferenceByTitle(productDto.getTitle())
-                        .getTitle())
-        ){
-            logger.info("Найден дубль");
-            return null;
+        try {
+            if(productDto.getTitle()
+                    .equals(
+                            productRepository.loadReferenceByTitle(productDto.getTitle())
+                                    .getTitle())
+            ){
+                logger.info("Найден дубль");
+                return null;
+            }
+        }catch (NullPointerException e){
+            logger.info("Похожих не найдено. Создаем.");
         }
         product.setPrice(productDto.getPrice());
         product.setTitle(productDto.getTitle());
